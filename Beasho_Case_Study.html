@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Beasho UX Case Study</title>
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; line-height: 1.6; color: #333; }
+  h1, h2, h3 { color: #111; border-bottom: 2px solid #eaeaea; padding-bottom: 8px; margin-top: 2em; }
+  h1 { font-size: 2.2em; border-bottom: none; }
+  .mermaid { text-align: center; margin: 2rem 0; width: 100%; display: flex; justify-content: center; }
+  pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow-x: auto; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+</script>
+</head>
+<body>
+<div id="content"></div>
+<script type="text/markdown" id="md-content">
+# UX Case Study: Beasho Cabin Direct-Booking Funnel
+
+## Day 1: Understanding and Choosing the Problem Statement
+**Objective:** Develop a comprehensive case study over seven days, aligned with the goal of increasing direct profit margins and guest personalization for a boutique cabin.
+
+**Problem Statement:** 
+Independent, premium beachside accommodations (like Beasho Cabin) lose 15-20% of their revenue to OTA (Online Travel Agency) platforms like Airbnb or Booking.com. Furthermore, these platforms prevent direct communication before booking, which is critical for boutique owners who want to vet guests and provide personalized hospitality.
+
+**Notes from Interviews/Field Visits:**
+- Property owners spend hours answering the same questions on WhatsApp ("How far is the beach?", "What are the rates?").
+- Guests value trust and aesthetics; a poor Instagram page or Google Maps listing isn't enough to justify premium pricing.
+- A full-scale custom booking engine (with calendars and payment gateways) is too expensive and high-maintenance for a small 4-cabin property.
+
+---
+
+## Day 2: Researching the Problem Statement
+**Key Metrics:**
+- **Current OTA Commission Rate:** ~15-20% per booking.
+- **Drop-off Rate:** High friction when users have to manually type out inquiries on Instagram DMs.
+- **Goal:** Shift 50% of OTA bookings to direct, zero-commission WhatsApp bookings.
+
+**Research Findings:**
+- **Qualitative:** Users are highly influenced by visuals and peer reviews (Google Reviews). If a standalone website looks "premium" (e.g., modern glassmorphism UI, high-res imagery), users trust the direct booking process.
+- **Quantitative:** Deep links directly to WhatsApp with pre-filled text increase inquiry conversion rates by removing the cognitive load of "what should I say?".
+
+---
+
+## Day 3: Redefining the Problem Statement
+**Who:** 
+Travelers (couples and solo adventurers) seeking a premium, secluded, and peaceful beach cabin experience in Gokarna.
+
+**What:** 
+A digital storefront and conversion funnel that builds massive trust and seamlessly connects high-intent guests directly to the owner via WhatsApp, bypassing third-party fees.
+
+**How:** 
+By designing a minimalist, cinematic "Liquid Glass" website that answers all FAQs visually, centralizes 5-star Google reviews, and utilizes a smart form that compiles user data into a structured WhatsApp message.
+
+**When:** 
+During the trip inspiration and booking decision phase, typically accessed via mobile devices from Instagram links or Google Search.
+
+**Impact Before:** 
+High dependency on OTAs, paying heavy commission fees, and dealing with disorganized, manual back-and-forth inquiries on social media.
+
+**Impact After:** 
+Zero commission fees, highly qualified leads, and instantaneous, structured booking requests arriving directly on the owner's phone.
+
+---
+
+## Day 4: Creative Brainstorming
+**Convergent Idea:** 
+A single, streamlined contact form integrated into the website that takes user details (Name, Dates, Guests) and instantly compiles them into a pre-formatted WhatsApp deep link to the owner.
+
+**Divergent Idea:** 
+Building a complex React web application with a synced backend Node.js calendar and Stripe payment processing. *(Discarded: Too much operational overhead for a small team).*
+
+**Sketches/Prototypes Concept:**
+- **Aesthetic:** "Liquid Glass" (Glassmorphism), dark mode, cinematic filmstrip galleries, cyan gradients to mimic the ocean.
+- **Layout:** Hero (Hook) → Vibe/Pillars (Persuasion) → Gallery (Desire) → Reviews (Trust) → Contact/WhatsApp Form (Action).
+
+---
+
+## Day 5: Developing Ideas into Prototypes
+**Prototype Details:**
+- **Tech Stack:** React, Vite, Tailwind CSS.
+- **UI Components:** 
+  - Dynamic Masonry Gallery.
+  - Interactive Google Maps embed natively pointing to the property.
+  - Live 5-star guest narrative components.
+- **Wireframes/Mockups Implementation:** Built high-fidelity, fully responsive components with interactive hover states (e.g., buttons glowing cyan on hover) to reinforce the premium feel.
+
+---
+
+## Day 6: Testing and Iteration
+**Usability Testing Feedback:**
+1. Users found standalone "WhatsApp" buttons confusing on the Hero page without having seen the room details first.
+2. The padding between sections felt too large, causing the site to feel "floaty" and disconnected.
+3. The Google Maps embed was hard to read due to heavy dark-mode CSS filters.
+4. Users didn't realize there was a café on-site.
+
+**Iterations and Improvements:**
+1. **Funnel Consolidation:** Removed direct WhatsApp buttons from the Hero/Nav and routed all "Check Availability" CTAs to the central Contact form page.
+2. **Spacing Optimization:** Systematically reduced padding constraints (`py-40` to `py-16`) across all components to create a cohesive, tight narrative flow.
+3. **Map Legibility:** Removed visual CSS filters from the `iframe` to present a native, full-color Google Map.
+4. **Copywriting:** Explicitly added "in-house cafe and kitchen" to the homepage feature pillars.
+
+---
+
+## User Flow Diagram
+
+```mermaid
+flowchart TD
+    A[User Discovers Beasho] -->|Clicks link in bio/SEO| B(Website Homepage)
+    
+    B -->|Scrolls through cinematic presentation| C{User explores content}
+    C -->|Views Rooms| D[Rooms Page]
+    C -->|Views Photos| E[Gallery Page]
+    C -->|Reads Testimonials| F[Trust Built via Google Reviews]
+    
+    D --> G{Decision to Inquire}
+    F --> G
+    
+    G -->|Clicks 'Check Availability'| H[Contact Page Form]
+    
+    H -->|Enters Name, Date, Guests| I[Clicks Submit Button]
+    
+    I -->|Pre-compiles data via URL Encoding| J[WhatsApp Deep Link Triggered]
+    
+    J -->|Opens Native WhatsApp App| K[Pre-filled Structured Message to Owner]
+    
+    K --> L[Owner Reviews Request & Confirms Booking]
+```
+
+### Explanation of the Primary Flow:
+1. **Entry:** User lands on the cinematic homepage.
+2. **Discovery & Trust:** User navigates through high-res photos, reads transparent pricing for cabins, and views verifiable 5.0 Google Reviews.
+3. **Action:** Convinced, the user clicks any **"Check Availability"** button, funneling them to the central Contact Form.
+4. **Data structuring:** The user inputs their desired dates, guest count, and name.
+5. **Fulfillment:** Submitting the form does not send an email—instead, it compiles their inputs into a neat text block and opens **WhatsApp directly**, bridging the gap between digital discovery and personal hospitality.
+</script>
+<script>
+  let mdText = document.getElementById('md-content').textContent;
+  const renderer = new marked.Renderer();
+  const originalCode = renderer.code.bind(renderer);
+  renderer.code = function(code, language, isEscaped) {
+    if (language === 'mermaid') {
+      return '<div class="mermaid">' + code + '</div>';
+    }
+    return originalCode(code, language, isEscaped);
+  };
+  document.getElementById('content').innerHTML = marked.parse(mdText, { renderer: renderer });
+</script>
+</body>
+</html>
